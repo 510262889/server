@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<!-- 
+	Mybatis生成Mapper配置文件
+	1，cmd切换至项目根目录
+	2，执行：mvn mybatis-generator:generate -Dmybatis.generator.configurationFile=src/test/resources/smsdb-generatorConfig.xml -Dmybatis.generator.propertiesURL=file:///${project.basedir}/src/test/resources/mybatis-generatorConfig.properties
+ -->
+
+<generatorConfiguration>
+
+    <properties url="${mybatis.generator.propertiesURL}" />
+
+    <context id="client" targetRuntime="MyBatis3DynamicSQL">
+        <!-- beginningDelimiter和endingDelimiter：指明数据库的用于标记数据库对象名的符号，比如ORACLE就是双引号，MYSQL默认是`反引号； -->
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <!-- 生成Modle和Mapper的父类、和Mapper增强 https://github.com/ruanjf/mybatis-crud-helper -->
+        <plugin type="com.runjf.mybatis.crud.GeneratorPlugin" />
+
+        <!-- 注释生成配置 -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="false" />
+            <property name="suppressDate" value="true" />
+            <!-- 生成数据库中设置的注释 -->
+            <property name="addRemarkComments" value="true" />
+        </commentGenerator>
+
+        <!-- 数据库连接 -->
+        <jdbcConnection driverClass="${jdbc.driver}"
+                        connectionURL="${jdbc.url}"
+                        userId="${jdbc.username}"
+                        password="${jdbc.password}">
+            <!-- 注释读取，针对oracle数据库 -->
+            <property name="remarksReporting" value="true" />
+            <!-- 注释读取，针对mysql数据库 -->
+            <property name="useInformationSchema" value="true" />
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!-- 数据表对应的model层 -->
+        <javaModelGenerator targetPackage="com.spring.server.entity" targetProject="src/main/java">
+            <property name="enableSubPackages" value="false"/>
+        </javaModelGenerator>
+
+        <!-- mapper接口 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.spring.server.mapper" targetProject="src/main/java">
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+        <!-- 要对那些数据表进行生成操作，必须要有一个. -->
+        <table tableName="detector" domainObjectName="Detector" delimitIdentifiers="true" />
+        <!--<table tableName="number_detection" domainObjectName="NumberDetection" delimitIdentifiers="true" />-->
+      <!--  <table tableName="access_key" domainObjectName="AccessKey" delimitIdentifiers="true" />-->
+
+        <!--<table schema="SMSPORTAL" tableName="T_CLIENT_USER" domainObjectName="ClientUser" delimitIdentifiers="true">-->
+            <!--<columnOverride column="SMS_AMOUNT" javaType="java.math.BigDecimal"/>-->
+            <!--<columnOverride column="QUERY_TIME_SPAN" javaType="java.math.BigDecimal"/>-->
+            <!--<columnOverride column="QUERY_MAX_COUNT" javaType="java.math.BigDecimal"/>-->
+        <!--</table>-->
+    </context>
+
+</generatorConfiguration>
