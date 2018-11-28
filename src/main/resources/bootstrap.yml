@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: server
+  cloud:
+    config:
+      # 配置获取失败则关闭应用
+      fail-fast: true
+      # 配置获取地址
+      uri: http://127.0.0.1:8001
