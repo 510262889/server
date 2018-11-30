@@ -7,5 +7,5 @@ package com.spring.server.fetch;
  * @date 2018/11/28 15:46
  **/
 public interface FetchHandler {
-    void fetch(String url);
+    void fetch();
 }
