@@ -3,7 +3,6 @@ package com.spring.server.util;
 import ch.qos.logback.core.util.CloseUtil;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
-import org.apache.http.client.CookieStore;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -108,7 +107,7 @@ public class HttpClientUtil {
         HttpGet get = new HttpGet(url);
         InputStream ips = null;
         String reponseContent = "";
-        get.setHeader("Content-Type", "application/json;charset=UTF-8");//**注意点1**，需要此格式，后边这个字符集可以不设置
+        get.setHeader("Content-Type", "application/json;charset=UTF-8");
         try {
             HttpResponse response = client.execute(get);
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {

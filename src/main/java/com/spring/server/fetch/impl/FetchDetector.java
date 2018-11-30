@@ -1,8 +1,12 @@
 package com.spring.server.fetch.impl;
 
+import com.alibaba.druid.support.json.JSONUtils;
+import com.spring.server.ServerApplication;
 import com.spring.server.fetch.FetchHandler;
+import com.spring.server.util.Base64Util;
 import com.spring.server.util.HttpClientUtil;
 
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,13 +22,20 @@ public class FetchDetector implements FetchHandler {
 
     @Override
     public void fetch() {
-        String response = null;
-        Map map = new HashMap<>();
-        try {
-            response = HttpClientUtil.net(url,map,"GET");
-        } catch (Exception e) {
-            e.printStackTrace();
+        for (int i = 0; i < 10; i++) {
+            String response = null;
+            try {
+                Map map = new HashMap<>();
+                response = HttpClientUtil.net(url, map, "GET");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            int start = response.indexOf("{");
+            int end = response.indexOf("}");
+            String createImagesStr = response.substring(start, end + 1);
+            Map<String, String> responseMap = (Map<String, String>) JSONUtils.parse(createImagesStr);
+            URL url = ServerApplication.class.getClassLoader().getResource("");
+            Base64Util.generateImage(responseMap.get("image"), url.getPath() + "fetch/" + System.currentTimeMillis() + ".jpg");
         }
-        System.out.println(response);
     }
 }
