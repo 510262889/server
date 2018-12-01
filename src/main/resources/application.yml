@@ -8,5 +8,8 @@ spring:
     password: captcha
 
 service:
-  detector:
+  captcha:
     url: https://kyfw.12306.cn/passport/captcha/captcha-image64?login_site=E&module=login&rand=sjrand&1543558363631&callback=jQuery19104340823452365097_1543558357966&_=1543558357968
+    imageUrl: fetch/
+    fetchNum: 10
+    textUrl: fetch/text

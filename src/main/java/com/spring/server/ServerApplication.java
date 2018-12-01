@@ -1,17 +1,13 @@
 package com.spring.server;
 
-import com.spring.server.fetch.FetchHandler;
-import com.spring.server.fetch.impl.FetchDetector;
-import com.spring.server.util.Base64Util;
-import com.spring.server.util.FileUtil;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
-import java.io.File;
-import java.net.URL;
-
+@SpringBootApplication
+@EnableConfigurationProperties()
 public class ServerApplication {
     public static void main(String[] args) {
-        //SpringApplication.run(ServerApplication.class, args);
-        FetchHandler fetchHandler = new FetchDetector();
-        fetchHandler.fetch();
+        SpringApplication.run(ServerApplication.class, args);
     }
 }
