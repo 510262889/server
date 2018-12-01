@@ -26,5 +26,5 @@ public class CaptchaConfig {
     private int fetchNum;
 
     // 校验文字
-    private String text;
+    private String textUrl;
 }
