@@ -21,4 +21,4 @@ create table `detector` (
   `name` varchar(32) not null comment '检测体名称',
   `create_time`	timestamp null default CURRENT_TIMESTAMP comment '创建时间',
 primary key (`id`)
-) engine=innodb comment '检测体表';
+) default charset=utf8 engine=innodb comment '检测体表'  ;

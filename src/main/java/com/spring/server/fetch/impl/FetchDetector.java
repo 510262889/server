@@ -68,7 +68,7 @@ public class FetchDetector implements FetchHandler {
         String saveImage = url.getPath() + config.getImageUrl();
         if ( !FileUtil.exist( saveImage ) ) new File( saveImage ).mkdirs();
         // 转换base64码为图片
-        Base64Util.generateImage( base64Code, saveImage + System.currentTimeMillis() + ".jpg" );
+        Base64Util.generateImage( base64Code, saveImage + System.currentTimeMillis() + ".png" );
         System.out.println( "图片转换成功，文件路径：" + saveImage );
     }
 

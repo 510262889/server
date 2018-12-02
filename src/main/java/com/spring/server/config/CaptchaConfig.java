@@ -22,9 +22,12 @@ public class CaptchaConfig {
     // 图片保存路径
     private String imageUrl;
 
+    // 文字图片保存路径
+    private String textUrl;
+
+    // 降噪图片存放路径
+    private String cleanUrl;
+
     // 采集数量
     private int fetchNum;
-
-    // 校验文字
-    private String textUrl;
 }

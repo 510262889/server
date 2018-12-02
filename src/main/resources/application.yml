@@ -3,6 +3,7 @@ server:
 
 spring:
   datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
     url: jdbc:mysql://127.0.0.1/captcha?autoReconnect=true&useSSL=false
     username: captcha
     password: captcha
@@ -10,6 +11,9 @@ spring:
 service:
   captcha:
     url: https://kyfw.12306.cn/passport/captcha/captcha-image64?login_site=E&module=login&rand=sjrand&1543558363631&callback=jQuery19104340823452365097_1543558357966&_=1543558357968
-    imageUrl: fetch/
-    fetchNum: 10
-    textUrl: fetch/text
+    fetchUrl: fetch
+    imageUrl: ${service.captcha.fetchUrl}/ori/
+    textUrl: ${service.captcha.fetchUrl}/text/
+    cleanUrl: ${service.captcha.fetchUrl}/clean/
+    fetchNum: 30
+
