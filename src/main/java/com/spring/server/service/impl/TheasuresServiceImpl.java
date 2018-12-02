@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 /**
- *  词库服务
+ * 词库服务
  *
  * @author ykzhuo
  * @since 2018-12-02 10:32
@@ -70,7 +70,7 @@ public class TheasuresServiceImpl implements TheasuresService {
 
         private String content;
         private List<Object[]> theasures = new ArrayList<>();
-        private int batch = 1000;
+        private int batch = 500;
         private int count;
 
         ReadFileThread( File file, int count ) {
@@ -91,7 +91,6 @@ public class TheasuresServiceImpl implements TheasuresService {
                 while ( (content = bufferedReader.readLine()) != null ) {
                     // 过滤无法识别的词
                     if ( checkContent( content ) && content.length() <= 3 ) theasures.add( new String[] { UUIDUtil.generateUUID(), content.trim() } );
-                    // 每1000个词保存一次
                     if ( theasures.size() % batch == 0 ) {
                         List<Object[]> insertList = new ArrayList<>( theasures );
                         threadPoolTaskExecutor.execute( new InsertTheasuresThread( insertList ) );
@@ -132,6 +131,8 @@ public class TheasuresServiceImpl implements TheasuresService {
             try {
                 jdbcTemplate.batchUpdate( SQL, theasures );
             } catch ( Exception e ) {
+                // 批量处理有一条发生错误就会全部回滚，这时候重新按条插入
+                for ( Object[] objects : theasures ) try { jdbcTemplate.update( SQL, objects ); } catch ( Exception x ) {}
             }
         }
     }

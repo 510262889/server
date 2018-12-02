@@ -4,7 +4,7 @@ server:
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql://127.0.0.1/captcha?autoReconnect=true&useSSL=false
+    url: jdbc:mysql://127.0.0.1/captcha?rewriteBatchedStatements=true&autoReconnect=true&useSSL=false
     username: captcha
     password: captcha
 

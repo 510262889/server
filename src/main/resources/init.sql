@@ -22,3 +22,6 @@ create table `detector` (
   `create_time`	timestamp null default CURRENT_TIMESTAMP comment '创建时间',
 primary key (`id`)
 ) default charset=utf8 engine=innodb comment '检测体表'  ;
+
+ALTER TABLE detector ADD unique(`name`);
+ALTER TABLE detector ADD INDEX detector_index(`name`) ;
