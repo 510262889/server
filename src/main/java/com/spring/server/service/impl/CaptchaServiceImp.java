@@ -1,6 +1,7 @@
 package com.spring.server.service.impl;
 
 import com.spring.server.service.CaptchaService;
+import org.springframework.stereotype.Service;
 import sun.font.FontDesignMetrics;
 
 import javax.imageio.ImageIO;
@@ -15,6 +16,7 @@ import java.util.Random;
  * @author ykzhuo
  * @date 2018/12/7 13:50
  **/
+@Service
 public class CaptchaServiceImp implements CaptchaService {
 
     //可选字体

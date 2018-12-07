@@ -16,10 +16,9 @@ public class TheadPoolConfig {
     @Bean
     public ThreadPoolTaskExecutor threadPoolTaskExecutor() {
         ThreadPoolTaskExecutor pool = new ThreadPoolTaskExecutor();
-        pool.setKeepAliveSeconds( 300 );
-        pool.setCorePoolSize( 5 );// 核心线程池数
-        pool.setMaxPoolSize( 10 ); // 最大线程
-        pool.setQueueCapacity( 25 );// 队列容量
+        pool.setCorePoolSize(6);
+        pool.setMaxPoolSize(12);
+        pool.setKeepAliveSeconds(3000);
         pool.setRejectedExecutionHandler( new java.util.concurrent.ThreadPoolExecutor.CallerRunsPolicy() ); // 队列满，线程被拒绝执行策略
         return pool;
     }
