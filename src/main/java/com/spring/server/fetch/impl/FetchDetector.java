@@ -71,6 +71,4 @@ public class FetchDetector implements FetchHandler {
         Base64Util.generateImage( base64Code, saveImage + System.currentTimeMillis() + ".png" );
         System.out.println( "图片转换成功，文件路径：" + saveImage );
     }
-
-
 }
